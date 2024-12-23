@@ -1,0 +1,164 @@
+# MindWell Screening & Scheduling Process Flow
+
+A comprehensive guide to the automated screening and scheduling system for MindWell practice management.
+
+## Table of Contents
+- [Phase 1: Form Submission](#phase-1-form-submission)
+- [Phase 2: Screening & Validation](#phase-2-screening--validation)
+- [Phase 3: Scheduling](#phase-3-scheduling)
+- [Calendar Integration](#calendar-integration)
+- [System Architecture](#system-architecture)
+- [Challenges & Solutions](#challenges--solutions)
+
+## Phase 1: Form Submission
+
+### Step 1: User Access
+Users can access the screening form via QuillForms through:
+- Manual text input
+- Voice interaction (Whisper + GPT-4)
+
+### Step 2: Form Completion
+Users provide:
+- Personal information
+- Age verification
+- Preferred appointment times
+- Clinical concerns
+
+### Step 3: Submission
+- Data is securely transmitted to backend
+- Initial processing begins
+
+## Phase 2: Screening & Validation
+
+### Step 4: AI-Powered Screening
+GPT-4 processes responses to:
+- Identify critical psychiatric concerns
+- Flag users under 18
+- Validate response patterns
+
+### Step 5: Decision Points
+System routes cases based on screening:
+
+**Under 18 Cases:**
+- Flagged for manual review
+- Redirected to manual screening calendar
+
+**Red Flag Cases:**
+- Escalated to clinical team
+- Follow manual review process
+
+**Standard Cases:**
+- Proceed to automated scheduling
+
+### Step 6: Data Validation
+System checks:
+- Required field completion
+- Format validation
+- Duplicate submission prevention
+
+## Phase 3: Scheduling
+
+### Manual Review Cases
+**Applicable for:**
+- Users under 18
+- Red-flagged cases
+
+**Process:**
+1. Redirect to calendar widget
+2. Select manual review time slot
+3. Confirmation via Google Calendar API
+
+### Standard Cases
+**Automated Process:**
+1. AI retrieves SimplePractice slots
+2. User selects preferred time
+3. System confirms booking
+4. Sends confirmation notification
+
+## Calendar Integration
+
+### Manual Review Calendar
+- Google Calendar integration
+- Embedded on MindWell website
+- Managed by clinical team
+
+### Standard Scheduling Calendar
+- SimplePractice integration
+- Real-time slot availability
+- Automated booking confirmation
+
+## System Architecture
+
+```mermaid
+graph TD
+    A[User Entry] --> B{Form Submission}
+    B --> C{AI Screening}
+    C -->|Under 18| D[Manual Review]
+    C -->|Red Flags| D
+    C -->|Standard| E[Automated Scheduling]
+    D --> F[Google Calendar]
+    E --> G[SimplePractice]
+    F --> H[Confirmation]
+    G --> H
+```
+
+## Challenges & Solutions
+
+| Challenge | Solution |
+|-----------|----------|
+| Dynamic Slot Management | Real-time browser agents |
+| Red Flag Handling | Automated escalation system |
+| Manual Review Scheduling | Google Calendar integration |
+| User Experience | Clear path differentiation |
+
+## System Benefits
+
+### Enhanced Safety
+- Comprehensive screening process
+- Automated red flag detection
+- Age-appropriate routing
+
+### Efficient Processing
+- Automated standard cases
+- Streamlined manual reviews
+- Real-time calendar updates
+
+### User Experience
+- Multiple input methods
+- Clear process flow
+- Immediate feedback
+
+### Clinical Integration
+- SimplePractice integration
+- Google Calendar sync
+- Team notification system
+
+## Technical Dependencies
+
+1. **AI Components**
+   - GPT-4 for screening
+   - Whisper for voice input
+
+2. **Calendar Systems**
+   - Google Calendar API
+   - SimplePractice integration
+
+3. **Frontend**
+   - QuillForms
+   - Custom calendar widgets
+
+4. **Backend**
+   - Automated browser agents
+   - Validation systems
+   - Database integration
+
+## Monitoring & Maintenance
+
+- Real-time slot synchronization
+- Error logging and alerts
+- Performance metrics tracking
+- Regular system audits
+
+---
+
+For technical support or system modifications, please contact the development team.
