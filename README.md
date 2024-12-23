@@ -85,6 +85,18 @@ For cases requiring additional screening:
 #### Automated Scheduling
 For standard cases:
 
+**Process Flow:**
+1. **Screening Completion:**
+   - Once users pass screening, they are presented with available slots on the Mindwell website
+2. **Dynamic Slot Display:**
+   - Browser agents (via Playwright) log into SimplePractice to extract real-time slot availability
+   - Slots are formatted and synced to a user-friendly calendar interface on the website
+3. **Slot Selection:**
+   - Users select a time slot that matches their preferences
+4. **Confirmation:**
+   - Browser agents book the slot in SimplePractice
+   - Appointment details are sent via notification channels
+
 **Browser Agent Actions:**
 - SimplePractice login
 - Slot availability extraction
@@ -121,17 +133,20 @@ graph TD
     F -->|Standard| H[Automated Scheduling]
     G --> I[Google Calendar]
     H --> J[SimplePractice]
+    H --> L[Dynamic Slot Display on Website]
+    L --> M[User Slot Selection]
+    M --> J
     I --> K[Notification System]
     J --> K
-
 ```
 
 ## Technical Challenges & Solutions
 
 | Challenge | Solution | Implementation |
 |-----------|----------|----------------|
+| Dynamic Slot Display | Regular Sync | Real-time updates from SimplePractice via browser agents |
 | Voice Feedback Latency | Response Optimization | API request batching |
-| Slot Management | Regular Sync | 15-minute update intervals |
+| Slot Management | Frequent Slot Sync | 15-minute update intervals |
 | Review Scheduling | Calendar Integration | Google Calendar API |
 | Mode Switching | Clear UI/UX | Visual and audio cues |
 
@@ -174,6 +189,10 @@ graph TD
 - Conflict prevention
 - Sync mechanisms
 - Backup protocols
+
+### Dynamic Slot Display
+- Format slots extracted from SimplePractice into a user-friendly website calendar
+- Ensure consistent updates to avoid scheduling conflicts
 
 ### User Interface
 - Mode switching
