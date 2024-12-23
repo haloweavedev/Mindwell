@@ -119,10 +119,11 @@ graph TD
     F -->|Red Flags| G[Manual Review]
     F -->|Under 18| G
     F -->|Standard| H[Automated Scheduling]
-    G --> I[Google Calendar Manual Review]
-    H --> J[SimplePractice Automation]
-    I --> K[Notification System (Twilio/SendGrid)]
+    G --> I[Google Calendar]
+    H --> J[SimplePractice]
+    I --> K[Notification System]
     J --> K
+
 ```
 
 ## Technical Challenges & Solutions
